@@ -12,10 +12,16 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "hashicorp/precise32"
+  # config.vm.box = "hashicorp/precise32"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "Ext-js"
   config.vm.provision 'ScriptRunAsRoot',type: "shell", path: "provisionAsRoot.sh"
   config.vm.provision 'ScriptRunAsVagrantUser',type: "shell", path: "provisionAsVagrant.sh", privileged: false
+
+  # Creates a forwarded port
+  config.vm.network "forwarded_port", guest: 3000, host: 80
+
+  config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: [".git", "Learning-Ext/node_modules"]
 
 
   # Disable automatic box update checking. If you disable this, then

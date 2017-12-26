@@ -2,3 +2,8 @@
 .vagrant/*
 extjs
 extjs/*
+Learning-Ext/node_modules
+Learning-Ext/public
+Learning-Ext/public/extjs
+Learning-Ext/public/extjs/*
+Learning-Ext/node_modules/*

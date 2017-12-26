@@ -1,0 +1,23 @@
+{
+  "name": "learning-ext",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "JBetoReyes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-nodemon": "^2.2.1",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1"
+  }
+}
