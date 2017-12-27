@@ -1,3 +1,14 @@
+export NGINX_HTML="/usr/share/nginx/html"
+export NGINX_CONFIG="/etc/nginx/sites-enabled"
+export VAGRANT_ROOT="/vagrant"
+
+# deletes the default configurations in nginx and
+# sets our configuration file.
+echo "Deleting default nginx config folder $NGINX_CONFIG"
+rm -rf $NGINX_CONFIG
+echo "Setting our nginx config files ${VAGRANT_ROOT}/sites-enabled"
+ln -s $VAGRANT_ROOT/sites-enabled /etc/nginx
+
 # Updates yum
 apt-get -y update
 

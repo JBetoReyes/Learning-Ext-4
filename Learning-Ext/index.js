@@ -6,7 +6,7 @@ var publicPath = path.resolve (__dirname, 'public');
 var srcPath = path.resolve (__dirname, 'src');
 
 app.get('/',function (req,res){
-  res.sendFile(path.join(srcPath +'/index.html'));
+  res.sendFile(path.join(srcPath +'/Extindex.html'));
   //__dirname : It will resolve to your project folder.
 });
 

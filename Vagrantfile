@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision 'ScriptRunAsVagrantUser',type: "shell", path: "provisionAsVagrant.sh", privileged: false
 
   # Creates a forwarded port
-  config.vm.network "forwarded_port", guest: 3000, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 80, id: "nginx"
 
   config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: [".git", "Learning-Ext/node_modules"]
 
