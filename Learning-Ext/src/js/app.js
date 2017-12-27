@@ -1,26 +1,29 @@
 Ext.onReady(function(){
-  var myTpl = Ext.create('Ext.Template', [
-    '<div style="background-color: {color}; margin: 10px;>"',
-      '<b> Name :</b> {name}<br/>',
-      '<b> Age :</b> {age} <br/>',
-      '<b> DOB :</b> {dob} <br/>',
-    '</div>'
+  var tplData = [{
+      color : "#FFE9E9",
+      name : 'Naomi Whites',
+      age : 25,
+      dob : '03/17/84',
+      cars : ['Jetta', 'Camry', 'S2000']
+    } , {
+      color : "#E9E9FF",
+      name : 'John Smith',
+      age : 20,
+      dob : '10/20/89',
+      cars : ['Civic', 'Accord', 'Camry']
+  }];
+
+  var myTpl = Ext.create('Ext.XTemplate', [
+    '<tpl for=".">',
+        '<div style="background-color: {color}; margin: 10px;">',
+          '<b> Name :</b> {name} <br/>',  
+          '<b> Age :</b> {age} <br/>',
+          '<b> DOB :</b> {dob} <br/>',
+        '</div>',
+      '</tpl>'
   ]);
 
   myTpl.compile();
-
-  myTpl.append(document.body,{
-    color: "#E9E9FF",
-    name: 'John Smith',
-    age: 20,
-    dob: '10/20/89'
-  });
-
-  myTpl.append(document.body,{
-    color: "#FFE9E9",
-    name: 'Naomi White',
-    age: 25,
-    dob: '03/17/84'
-  });
+  myTpl.append(document.body, tplData);
 
 });
