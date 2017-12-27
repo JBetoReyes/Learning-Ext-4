@@ -1,42 +1,50 @@
 Ext.onReady(function(){
-  var tplData = [{
-      color : "#FFE9E9",
-      name : 'Naomi Whites',
-      age : 25,
-      dob : '03/17/84',
-      cars : ['Jetta', 'Camry', 'S2000']
-    } , {
-      color : "#E9E9FF",
-      name : 'John Smith',
-      age : 20,
-      dob : '10/20/89',
-      cars : ['Civic', 'Accord', 'Camry']
-  }];
+  var myBtnHandler = function(btn){
+    Ext.MessageBox.alert('You clicked', btn.text);
+  }
 
-  var myTpl = Ext.create('Ext.XTemplate',[
-    '<tpl for=".">',
-        '<div style="background-color: {color}; margin: 10px;">',
-          '<b> Name :</b> {name}<br/>',
-          '<b> Age :</b> {age}<br/>',
-          '<b> DOB :</b> {dob}<br/>',
-          '<b> Cars:</b> ',
-          '<tpl for="cars">',
-            '{.}',
-            '<tpl if="this.isCamry(values)">',
-              '<b> (same car)</b>',
-            '</tpl>',
-            '{[(xindex < xcount) ? ", " : ""]}',
-          '</tpl>',
-        '</div>',
-    '</tpl>',
+  var fileBtn = Ext.create('Ext.button.Button',{
+    text: 'File',
+    handler: myBtnHandler
+  });
+
+  var editBtn = Ext.create('Ext.button.Button',{
+    text: 'Edit',
+    handler: myBtnHandler
+  });
+
+  var tbFill = new Ext.toolbar.Fill();
+
+  var myTopToolbar = Ext.create('Ext.toolbar.Toolbar',{
+    items: [
+      fileBtn,
+      tbFill,
+      editBtn
+    ]
+  });
+
+  var myBottomToolbar = [
     {
-      isCamry: function(car){
-        return car === 'Camry';
-      }
-    }
-  ]);
+      text: 'Save',
+      handler: myBtnHandler,
+    },
+    '-',
+    {
+      text: 'Cancel',
+      handler: myBtnHandler
+    },
+    '->',
+    '<b>Items open: 1</b>'
+  ];
 
-  myTpl.compile();
-  myTpl.append(document.body, tplData);
-
+  var myPanel = Ext.create('Ext.panel.Panel',{
+    width: 200,
+    height: 150,
+    title: 'Ext Panel rock!',
+    collapsible: true,
+    renderTo: Ext.getBody(),
+    tbar: myTopToolbar,
+    bbar: myBottomToolbar,
+    html: 'My First Toolbar Panel!'
+  });
 });
