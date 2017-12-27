@@ -13,14 +13,27 @@ Ext.onReady(function(){
       cars : ['Civic', 'Accord', 'Camry']
   }];
 
-  var myTpl = Ext.create('Ext.XTemplate', [
+  var myTpl = Ext.create('Ext.XTemplate',[
     '<tpl for=".">',
         '<div style="background-color: {color}; margin: 10px;">',
-          '<b> Name :</b> {name} <br/>',  
-          '<b> Age :</b> {age} <br/>',
-          '<b> DOB :</b> {dob} <br/>',
+          '<b> Name :</b> {name}<br/>',
+          '<b> Age :</b> {age}<br/>',
+          '<b> DOB :</b> {dob}<br/>',
+          '<b> Cars:</b> ',
+          '<tpl for="cars">',
+            '{.}',
+            '<tpl if="this.isCamry(values)">',
+              '<b> (same car)</b>',
+            '</tpl>',
+            '{[(xindex < xcount) ? ", " : ""]}',
+          '</tpl>',
         '</div>',
-      '</tpl>'
+    '</tpl>',
+    {
+      isCamry: function(car){
+        return car === 'Camry';
+      }
+    }
   ]);
 
   myTpl.compile();
