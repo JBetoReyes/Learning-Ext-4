@@ -1,130 +1,43 @@
 Ext.onReady(function(){
-  var myBtnHandler = function(btn){
-    Ext.MessageBox.alert('You clicked', btn.text);
-  }
-
-  var fileBtn = Ext.create('Ext.button.Button',{
-    text: 'File',
-    handler: myBtnHandler
-  });
-
-  var editBtn = Ext.create('Ext.button.Button',{
-    text: 'Edit',
-    handler: myBtnHandler
-  });
-
-  var tbFill = new Ext.toolbar.Fill();
-
-  var myTopToolbar = Ext.create('Ext.toolbar.Toolbar',{
-    items: [
-      fileBtn,
-      tbFill,
-      editBtn
-    ]
-  });
-
-  var myBottomToolbar = [
-    {
-      text: 'Save',
-      handler: myBtnHandler,
+  var viewport = Ext.create('Ext.container.Viewport', {
+    layout: 'border',
+    defaults: {
+      frame: true,
+      split: true
     },
-    '-',
-    {
-      text: 'Cancel',
-      handler: myBtnHandler
-    },
-    '->',
-    '<b>Items open: 1</b>'
-  ];
-
-  var myPanel = Ext.create('Ext.panel.Panel',{
-    width: 200,
-    height: 150,
-    title: 'Ext Panel rock!',
-    collapsible: true,
-    //renderTo: Ext.getBody(),
-    tbar: myTopToolbar,
-    bbar: myBottomToolbar,
-    html: 'My First Toolbar Panel!',
-    bottonAlign: 'left',
-    buttons: [
+    items:[
       {
-        text: 'Press me',
-        handler: myBtnHandler
-      }
-    ],
-    tools: [
-      {
-        type: 'gear',
-        handler: function(evt, toolEl, panel){
-          var toolClassNames = toolEl.className.split(' ');
-          var toolClass = toolEl.className;
-          var toolId = toolClass.split('-')[2];
-
-          Ext.MessageBox.alert('You Clicked', 'Tool: ' + toolId);
+        title: 'North Panel',
+        region: 'north',
+        hieght: 100,
+        minHeight: 100,
+        maxHeight: 150,
+        collapsible: true
+      }, {
+        title: 'South Panel',
+        region: 'south',
+        height: 75,
+        split: false,
+        margins: {
+          top: 5
         }
       }, {
-        type: 'help',
-        handler: function(){
-          Ext.MessageBox.alert('You Clicked', 'The help tool!');
-        }
+        title: 'East Panel',
+        region: 'east',
+        width: 100,
+        minWidth: 75,
+        maxWidth: 150,
+        collapsible: true
+      }, {
+        title: 'West Panel',
+        region: 'west',
+        collapsible: true,
+        collapseMode: 'mini',
+        width: 100
+      }, {
+        title: 'Center panel',
+        region: 'center'
       }
-    ]
-  });
-
-  var buttons = [
-    {
-      text: 'Btn 1'
-    }, {
-      text: 'Btn 2'
-    }, {
-      text: 'Btn 3'
-    }
-  ];
-
-  var topDockedToolBar = {
-    xtype: 'toolbar',
-    dock:  'top',
-    items: buttons
-  };
-
-  var bottomDockedToolBar = {
-    xtype: 'toolbar',
-    dock: 'bottom',
-    items: buttons
-  }
-
-  var leftDockedToolBar = {
-    xtype: 'toolbar',
-    dock: 'left',
-    items: buttons,
-    vertical: true,
-    weight: 10
-  }
-
-  var rightDockedToolbar = {
-    xtype: 'toolbar',
-    dock: 'right',
-    items: buttons,
-    vertical: true,
-    weight: 10
-  }
-
-  var myPanel2 = Ext.create('Ext.panel.Panel',{
-    width: 350,
-    height: 250,
-    title: 'Ext Panels rock!',
-    renderTo: Ext.getBody(),
-    html: 'Content body',
-    buttons: {
-      weight:-1,
-      items: buttons
-    },
-    dockedItems: [
-      topDockedToolBar,
-      bottomDockedToolBar,
-      leftDockedToolBar,
-      rightDockedToolbar
     ]
   });
 });
